@@ -12,6 +12,8 @@ RUN /usr/bin/curl -sS https://getcomposer.org/installer |/usr/bin/php
 RUN /bin/mv composer.phar /usr/local/bin/composer
 RUN chown www-data:www-data /usr/sbin/apachectl && chown www-data:www-data /var/www/html/
 
+COPY apache2-foreground /usr/local/bin/
+
 ENV APACHE_LOCK_DIR "/var/lock"
 ENV APACHE_RUN_DIR "/var/run/apache2"
 ENV APACHE_PID_FILE "/var/run/apache2/apache2.pid"
@@ -24,5 +26,4 @@ EXPOSE 443
 
 WORKDIR /var/www/html/
 
-ENTRYPOINT ["/usr/sbin/apachectl"]
-CMD ["-D","FOREGROUND"]
+CMD ["apache2-foreground"]
