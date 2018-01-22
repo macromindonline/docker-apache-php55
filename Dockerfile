@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER MACROMIND Online <idc@macromind.online>
 LABEL description="MACROMIND Online Dev - Ubuntu + Apache2 + PHP 5.5"
 
-RUN apt-get update && apt-get -y install git curl apache2 php5 php5-mysql php5-mcrypt php5-json php5-imap libapache2-mod-php5 && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get -y install git curl apache2 php5 php5-mysql php5-mcrypt php5-json php5-imap libapache2-mod-php5 php5-curl && apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN /usr/sbin/a2dismod 'mpm_*' && /usr/sbin/a2enmod mpm_prefork
 RUN /usr/sbin/a2enmod rewrite
 RUN chown www-data:www-data /usr/sbin/apachectl && chown www-data:www-data /var/www/html/
